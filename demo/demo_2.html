@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo 02</title>
+</head>
+<body>
+	<div ng-app="app">
+		<h1></h1>
+	</div>
+	
+	<!-- 引入 -->
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		//用angular全局对象创建一个模块对象
+		var app = angular.module("app",[]);
+
+		//通过模块对象创建controller
+		var con = app.controller("demoController",['$scope',function($scope){
+			// $scope
+		}]);
+	</script>
+</body>
+</html>

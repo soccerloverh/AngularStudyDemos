@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<!-- ng-bind 只能用绑定到文本元素中 如果需要绑定到属性需要 ng-value  -->
+	<div ng-controller="ctrl">
+		GoodsName:<input type="text" readonly="true" ng-model="order.name"/>
+		<br/>
+		GoodsPrice:<input type="number" readonly="true" ng-model="order.price">
+		<br/>
+		GoodsNumber:<input type="number" ng-model="order.num">
+		<br/>
+		Total Cost: 文本元素绑定:<span ng-bind="order.price*order.num"></span> 属性绑定:<input type="number" ng-value="order.price*order.num" />
+	</div>
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",["$scope",function($scope){
+			$scope.order = {
+				"name":"苹果",
+				"price":5,
+				"num":0
+			};
+			$scope.$watch("order.num",function(){
+				$scope.order.num = $scope.order.num>0?$scope.order.num:0;
+			});
+
+		}]);
+	</script>
+</body>
+</html>

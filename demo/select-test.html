@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<select ng-options="x.id as x.type for x in types" ng-model="type">
+			
+		</select>
+		你的选择是: {{type}}
+		<br>
+		Angular version:{{version}}
+	</div>
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",["$scope",function($scope){
+			$scope.types = [
+				{id:1,type:"攻击"},
+				{id:2,type:"蠕虫"},
+				{id:3,type:"木马"},
+				{id:4,type:"流量异常"},
+				{id:5,type:"敏感信息"},
+				{id:6,type:"特种木马"},
+				{id:7,type:"其他"},
+			];
+			angular.forEach($scope.types,function(value,index){
+				console.log(index);
+			});
+			$scope.type = $scope.types[0].id;
+			$scope.version = angular.version;
+		}]);
+	</script>
+</body>
+</html>

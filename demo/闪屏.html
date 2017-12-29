@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.ng-cloak{
+			display: none;
+		}
+	</style>
+</head>
+<body ng-app="app" >
+	<div ng-controller="ctrl">
+		<h1 class="ng-cloak">Hello : {{name}}</h1>
+		<hr>
+		<h1 ng-bind="age"></h1>
+		<hr>
+		<input type="text" ng-model="name"/>
+	</div>	
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",['$scope',function ($scope){
+			$scope.name = "hck";
+			$scope.age = 18;
+			$scope.user = {"userName":"lkx","userAge":19};
+		}]);
+	</script>
+</body>
+</html>

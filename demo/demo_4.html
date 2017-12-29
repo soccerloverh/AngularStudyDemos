@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+
+<p>两秒后显示信息:</p>
+
+<h1>{{myHeader}}</h1>
+
+</div>
+
+<p>$timeout 访问在规定的毫秒数后执行指定函数。</p>
+<script type="text/javascript" src="../lib/angular.min.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $timeout) {
+  $scope.myHeader = "Hello World!";
+	var i = 10;
+	timer($scope,i,$timeout);
+});
+	
+	function timer($scope,i,$timeout){
+		if(i>0){
+			$scope.myHeader = "浏览器将在"+i+"秒后跳转";
+			$timeout(function () {
+				timer($scope,i-1,$timeout);
+ 			 },1000);
+		}else{
+			location.href="http://www.baidu.com";
+			return ;
+		}
+	}
+</script>
+
+</body>

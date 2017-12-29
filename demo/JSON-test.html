@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<form method="post" action="">
+			Name:<input type="text" ng-model="user.name" /><br/>
+			Password:<input type="password" ng-model="user.password" /><br/>
+			JSON:<input type="textarea" id="json" readonly="true" /><br/>
+			<input type="checkbox" ng-model="check">:我同意!<br/>{{check}}
+			<input ng-disabled="!check" type="submit" value="Submit"/><br/>
+		</form>
+	</div>
+
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript" src="../lib/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",["$scope",function($scope){
+			$scope.user = {name:"",password:""};
+			$('form').submit(function(){
+			   	$('#json').val(angular.toJson($scope.user));
+				return false;
+			});
+		}]);
+	</script>
+</body>
+</html>

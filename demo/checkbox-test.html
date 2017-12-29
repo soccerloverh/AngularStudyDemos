@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	
+	<div ng-controller="ctrl">
+		游戏: <input type="checkbox" ng-model="form.game">
+		电影: <input type="checkbox" ng-model="form.firm">
+<br/>
+		<h2 ng-show="form.game">游戏表单</h2><br/>
+		<h2 ng-show="form.firm">电影表单</h2><br/>		
+		{{ng339}}
+	</div>
+	
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",["$scope",function($scope){
+			$scope.form = {game:false,firm:false};
+		}]);
+	</script>
+</body>
+</html>

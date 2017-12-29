@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="demo">
+	
+	<table >
+		<thead>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Age</th>
+		</thead>
+		<tbody ng-controller='demoController'>
+			<tr ng-repeat="person in persons">
+				<td>{{person.name}}</td>
+				<td>{{person.gender}}</td>
+				<td>{{person.age}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script>
+		var app = angular.module("demo",[]);
+		var demoController = app.controller("demoController",['$scope',function($scope){
+				$scope.persons = [
+					{name:'hck',gender:'M',age:18},
+					{name:'lkx',gender:'F',age:18},
+					{name:'hey',gender:'M',age:1}
+				]
+		}]);
+	</script>
+</body>
+</html>
