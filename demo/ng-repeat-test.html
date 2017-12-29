@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+	
+	</div>
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller("ctrl",["$scope",function(){
+		$scope.data = [
+			{"name":"hck","age":18},
+			{"name":"hck","age":12},
+			{"name":"hck","age":13},
+		];
+	}]);
+	</script>
+</body>
+</html>

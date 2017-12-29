@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl" ng-cloak class="ng-cloak">
+		<table>
+			<thead>
+				<td><input type="checkbox" ng-model="selectAll" ></td>
+				<th>Name</th>
+				<th>Age</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="x in data">
+					<td><input type="checkbox" ng-checked="selectAll"></td>
+					<td>{{x.name}}</td>
+					<td>{{x.age}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module("app",[])
+		.controller("ctrl",["$scope",function($scope){
+			$scope.data = [
+				{name:"hck",age:18},
+				{name:"hhh",age:17},
+				{name:"fff",age:16}
+			];
+		}]);
+	</script>
+</body>
+</html>
