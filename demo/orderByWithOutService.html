@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.ng-cloak{
+			display: none;
+		}
+	</style>
+</head>
+
+<body ng-app="app">
+	<div ng-controller="ctrl" class="ng-cloak">
+		<table>
+			<thead>
+				<th><input type="checkbox" ng-model="selectAll">全选</th>	
+				<th><input type="checkbox" ng-click="sort($event,'id')">ID</th>
+				<th><input type="checkbox" ng-click="sort($event,'name')">Name</th>
+				<th><input type="checkbox" ng-click="sort($event,'age')">Age</th>
+				<th><input type="checkbox" ng-click="sort($event,'sex')">Sex</th>
+			</thead>
+			<tbody>
+				<!-- 直接使用过滤器 -->
+				<tr ng-repeat="x in data|filter:filterStr|orderBy:sortStr:desc">
+					<td><input type="checkbox" ng-checked="selectAll"></td>
+					<td>{{x.id}}</td>
+					<td>{{x.name}}</td>
+					<td>{{x.age}}</td>
+					<td>{{x.sex}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	<br>
+	查询:<input type="text" ng-model="filterStr" />
+	</div>
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",["$scope",function($scope){
+			$scope.data = [
+				{id:1,name:"hck",age:18,sex:"male"},
+				{id:2,name:"lkx",age:17,sex:"female"},
+				{id:3,name:"hhh",age:20,sex:"male"},
+				{id:4,name:"xxx",age:16,sex:"female"}
+			];
+			$scope.sortStr = "age";
+			$scope.desc = false;
+			$scope.filterStr = "";
+			$scope.sort = function($event,column){
+				if($event.target.checked){
+					$scope.sortStr = column;
+					$scope.desc = !$scope.desc;
+				}else{
+					$scope.sortStr = column;
+					$scope.desc = !$scope.desc;
+				}
+			}
+		}]);
+
+
+	</script>
+</body>
+</html>

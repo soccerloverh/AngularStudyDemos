@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.ng-cloak{
+			display: none;
+		}
+	</style>
+</head>
+
+<body ng-app="app">
+	<div ng-controller="ctrl" class="ng-cloak">
+		<table>
+			<thead>
+				<th><input type="checkbox" ng-model="selectAll">全选</th>	
+				<th><input type="checkbox" ng-click="sort($event,'id')">ID
+					<span ng-if="desc['id']">降序</span>
+					<span ng-if="!desc['id']">升序</span>
+				</th>
+				<th><input type="checkbox" ng-click="sort($event,'name')">Name
+					<span ng-if="!desc['name']">升序</span>
+					<span ng-if="desc['name']">降序</span></th>
+				<th><input type="checkbox" ng-click="sort($event,'age')">Age
+					<span ng-if="!desc['age']">升序</span>
+					<span ng-if="desc['age']">降序</span></th>
+				<th><input type="checkbox" ng-click="sort($event,'sex')">Sex
+					<span ng-if="!desc['sex']">升序</span>
+					<span ng-if="desc['sex']">降序</span></th>
+			</thead>
+			<tbody>
+				
+				<tr ng-repeat="x in lists">
+					<td><input type="checkbox" ng-checked="selectAll"></td>
+					<td>{{x.id}}</td>
+					<td>{{x.name}}</td>
+					<td>{{x.age}}</td>
+					<td>{{x.sex}}</td>
+				</tr>
+			</tbody>
+		</table>
+	<br>
+	查询:<input type="text" ng-model="filterStr" />
+	</div>
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		<!-- 注入filter服务 -->
+		app.controller("ctrl",["$scope","$filter",function($scope,$filter){
+			$scope.data = [
+				{id:1,name:"hck",age:18,sex:"male"},
+				{id:2,name:"lkx",age:17,sex:"female"},
+				{id:3,name:"hhh",age:20,sex:"male"},
+				{id:4,name:"xxx",age:16,sex:"female"}
+			];
+			$scope.desc = {id:false,name:false,age:false,sex:false};
+			
+			$scope.sort = function($event,column){
+					$scope.desc[column] = !$scope.desc[column];
+					
+					$scope.data = $filter('orderBy')($scope.data,column,$scope.desc[column]);
+				
+			};
+
+			$scope.$watch("filterStr",function (n,o){
+				$scope.lists = $scope.data;
+				$scope.lists = $filter('filter')($scope.lists,n);
+			});
+		}]);
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div my-directive>
+		hhhhh
+	</div>
+	<br>
+	<my-directive>hhhhh</my-directive>
+
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.directive("myDirective",[function(){
+			return {
+				restrict: "AEC",
+				//指定该指令能在那些地方使用
+				//A attribute 属性
+				//E Element 元素
+				//C Class 类
+				// template:" MyDirective"
+				template: function(elem,attr){
+					return elem.html();
+				}
+			}
+		}]);
+	</script>
+</body>
+</html>

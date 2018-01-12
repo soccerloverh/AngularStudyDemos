@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		请输入邮箱: <input type="text" ng-model="mail"/>
+		<hr>
+		您输入的邮箱:{{mail|fillUpMail}}
+	</div>
+	<script type="text/javascript" src="../lib/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.filter("fillUpMail",function(){
+			return function(mail){
+				return mail?mail+"@qq.com":"";
+			}
+		});
+		app.controller("ctrl",["$scope",function($scope){
+		
+		}]);
+
+	</script>
+</body>
+</html>
